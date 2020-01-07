@@ -5,7 +5,7 @@
 
 
 <div *ngIf="shownTemplate === 'signIn'">
-  <app-sign-in></app-sign-in>
+  <app-sign-in (shownTemplate)="showResetPW($event)"></app-sign-in>
 </div>
 <div *ngIf="shownTemplate === 'resetPW'">
   <app-reset-pw></app-reset-pw>

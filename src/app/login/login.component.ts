@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DBService } from 'src/services/db.service';
 
@@ -18,9 +18,13 @@ export class LoginComponent implements OnInit {
   @ViewChild('webTemplate', {static: false}) webTemplate: TemplateRef<any>;
 
 
-  shownTemplate = "";
+  private shownTemplate = "";
+  private users: User[] = [];
 
-  users: User[] = [];
+  @Input()
+  set template(templateName: string) {
+    this.shownTemplate = templateName;
+  }
 
   constructor(private dbService: DBService) { }
 
@@ -36,6 +40,10 @@ export class LoginComponent implements OnInit {
 
   showSignIn() {
     this.shownTemplate = 'signIn';
+  }
+
+  showResetPW() {
+    this.shownTemplate = 'resetPW';
   }
 
 

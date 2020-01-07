@@ -1,0 +1,42 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { GameComponent } from './game/game.component';
+import { StartComponent } from './start/start.component';
+import { HeaderComponent } from './header/header.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChatComponent } from './chat/chat.component';
+import { SettingsComponent } from './settings/settings.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { ResetPwComponent } from './login/reset-pw/reset-pw.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
+import { SignInComponent } from './login/sign-in/sign-in.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    GameComponent,
+    StartComponent,
+    HeaderComponent,
+    NavbarComponent,
+    ProfileComponent,
+    ChatComponent,
+    SettingsComponent,
+    LoginComponent,
+    ResetPwComponent,
+    SignUpComponent,
+    SignInComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

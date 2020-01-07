@@ -1,0 +1,118 @@
+
+   <div id="logreg-forms">
+    <form class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+        <div class="social-login">
+            <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+            <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
+        </div>
+        <p style="text-align:center"> OR  </p>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        
+        <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Login </button>
+        <a href="#" id="forgot_pswd" (click)="showForgetPW()">Forgot password?</a>
+        <hr>
+        
+        <!-- <p>Don't have an account!</p>  -->
+        <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+        </form>
+
+
+        
+        <form action="/signup/" class="form-signup">
+            <div class="social-login">
+                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
+            </div>
+            <div class="social-login">
+                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google+</span> </button>
+            </div>
+            
+            <p style="text-align:center">OR</p>
+
+            <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
+            <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
+            <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+            <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
+
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+            <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+        </form>
+        <br>
+        
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="todo-input" class="card">
+    <form (ngSubmit)="onNewUser(f)" #f="ngForm">
+      <label for="user">User</label>
+      <input ngModel type="text" id="user" name="name" required />
+
+
+
+      <!-- <label for="example-date-input" class="col-2 col-form-label">Date</label>
+      <div class="col-10">
+        <input ngModel class="form-control" type="date" value="2001-01-01" id="user" name="dateOfBirth" required>
+      </div> -->
+
+<!-- 
+      <label class="custom-control custom-radio">
+        <input ngModel id="user" name="radio" type="radio" class="custom-control-input" name="sex">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Male</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input ngModel id="user" name="radio" type="radio" class="custom-control-input" name="sex">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Female</span>
+      </label> -->
+
+      <ul>
+        <li class="todo" *ngFor="let user of users; let i = index">
+          <h1>{{ user.name }}</h1>
+          <button class="btn btn-danger" (click)="onDeleteUser(i)">DELETE</button>
+        </li>
+      </ul>
+
+
+      <button class="btn" type="submit" [disabled]="!f.valid">Save</button>
+    </form>
+  </div>
+<!--   
+  <div id="todos" class="card">
+    <div id="todo-actions">
+      <button class="btn btn-alt" (click)="onFetchData()">Fetch from Database</button>
+    </div>
+    <ul>
+      <li class="todo" *ngFor="let todo of todos; let i = index">
+        <h1>{{ todo.title }}</h1>
+        <button class="btn btn-danger" (click)="onRemoveTodo(i)">DELETE</button>
+      </li>
+    </ul>
+  </div> -->
+
+
+<!-- <button onclick="onNewUser()">
+    
+</button> -->
+
+
+<div id="todo-actions">
+  <button class="btn btn-alt" (click)="onFetchUsers()">Fetch users from Database</button>
+</div>

@@ -1,0 +1,18 @@
+<!-- <button (click)="showSignUp()">show!</button> -->
+
+
+
+
+
+<div *ngIf="shownTemplate === 'signIn'">
+  <app-sign-in></app-sign-in>
+</div>
+<div *ngIf="shownTemplate === 'resetPW'">
+  <app-reset-pw></app-reset-pw>
+</div>
+<div *ngIf="shownTemplate === 'signUp'">
+  <app-sign-up></app-sign-up>
+</div>
+
+
+

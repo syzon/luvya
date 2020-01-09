@@ -14,7 +14,11 @@ export class SignInComponent implements OnInit {
   }
 
   showForgetPW() {
-    this.shownTemplate.emit('signIn');
+    this.shownTemplate.emit('resetPW');
+  }
+
+  showSignUp() {
+    this.shownTemplate.emit('signUp');
   }
 
 }

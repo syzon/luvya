@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-reset-pw',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset-pw.component.scss']
 })
 export class ResetPwComponent implements OnInit {
+@Output() private shownTemplate = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  backToSignIn() {
+    this.shownTemplate.emit('signIn');
   }
 
 }

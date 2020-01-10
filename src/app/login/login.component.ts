@@ -9,7 +9,6 @@ import { DBService } from 'src/services/db.service';
 })
 export class LoginComponent implements OnInit {
   private shownTemplate = "";
-  // private users: User[] = [];
 
   @Input()
   set template(templateName: string) {
@@ -40,29 +39,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-  // onNewUser(form: NgForm) {
-  //   console.log(form)
-  //   console.log(form.value.name)
-  //   console.log(form.value.dataOfBirth)
-  //   // const newUser = {name: form.value.name, dataOfBirth: form.value.dataOfBirth, sex: form.value.sex};
-  //   const newUser = {
-  //     name: form.value.name
-      
-  //   };
-  //   console.log(newUser)
-  //   this.users.push(newUser);
-  //   this.dbService.addUser(newUser);
-  //   form.resetForm();
-  // }
-
-  // onFetchUsers() {
-  //   this.dbService.getUsers().then(users => this.users = users);
-  // }
-
-  onDeleteUser(user) {
-    this.dbService.deleteUser(user);
-    // this.users.splice(index, 1)
-  }
 
 
 

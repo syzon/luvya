@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { ResetPwComponent } from './login/reset-pw/reset-pw.component';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { SignInComponent } from './login/sign-in/sign-in.component';
+import { MustMatchDirective } from './helpers/must-match.directive';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { SignInComponent } from './login/sign-in/sign-in.component';
     ResetPwComponent,
     SignUpComponent,
     SignInComponent,
+    MustMatchDirective,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

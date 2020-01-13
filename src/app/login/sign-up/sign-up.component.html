@@ -34,7 +34,7 @@
     <div class="card m-3">
         <h5 class="card-header">Registrierung</h5>
         <div class="card-body">
-            <form name="form" (ngSubmit)="f.form.valid && signUp()" #f="ngForm"
+            <form name="form" (ngSubmit)="f.form.valid && !checkIfUserExists()" #f="ngForm"
                 [mustMatch]="['password', 'confirmPassword']" novalidate>
                 <div class="form-group">
                     <label> Name</label>
@@ -52,14 +52,16 @@
                     <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
                         <div *ngIf="email.errors.required">Email is required</div>
                         <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                        
                     </div>
+                    <div *ngIf="emailAddressAlreadyInUse">Email is already in use</div>
                 </div>
 
                 <div class="form-group">
                     <label>Date of birth</label>
                     <input type="date" name="dateOfBirth" class="form-control" [(ngModel)]="model.dateOfBirth" #dateOfBirth="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && dateOfBirth.invalid }" required>
-                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                    <div *ngIf="f.submitted && dateOfBirth.invalid" class="invalid-feedback">
                         <div *ngIf="dateOfBirth.errors.required">dateOfBirth is required</div>
                         <div *ngIf="dateOfBirth.errors.dateOfBirth">dateOfBirth must be a valid</div>
                     </div>

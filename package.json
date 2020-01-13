@@ -21,10 +21,12 @@
     "@angular/router": "~8.2.14",
     "@ngtools/webpack": "^8.3.22",
     "angular-font-awesome": "^3.1.2",
+    "bcrypt-nodejs": "0.0.3",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
     "mongodb-stitch-browser-sdk": "^4.8.0",
+    "passport": "^0.4.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

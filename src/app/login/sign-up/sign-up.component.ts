@@ -48,11 +48,12 @@ export class SignUpComponent implements OnInit {
   }
 
   checkIfUserExists() {
-    this.dbService.checkIfUserExists(this.model).then((found) => {
+    this.dbService.getUser(this.model).then((found) => {
       if (found !== null) {
         this.emailAddressAlreadyInUse = true;
       } else {
         this.emailAddressAlreadyInUse = false;
+        this.signUp();
       }
     }
     );
@@ -61,22 +62,25 @@ export class SignUpComponent implements OnInit {
   signUp() {
     console.log("SIGNUP SUCCEEDED")
     console.log(this.model);
-    // this.addNewUser(this.model);
-    // this.backToSignIn();
+    this.addNewUser(this.model);
+    this.backToSignIn();
   }
 
   addNewUser(user: any) {
-    const newUser = {
-      name: user.name,
-      email: user.email,
-      dataOfBirth: user.dataOfBirth,
-      gender: user.gender,
-      password: user.password
-    };
+    // const newUser = {
+    //   name: user.name,
+    //   email: user.email,
+    //   dataOfBirth: user.dataOfBirth,
+    //   gender: user.gender,
+    //   password: user.password
+    // };
 
-    console.log(newUser)
+
+
+
+    // console.log(newUser)
     // this.users.push(newUser);
-    // this.dbService.addUser(newUser);
+    this.dbService.addUser(user);
 
     // TODO: resetten
     // this.model = 

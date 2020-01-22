@@ -34,14 +34,12 @@ export class DBService {
     }
 
     findAccount(account) {
-        console.log(account)
         return new Promise(resolve => {
             this.client.auth.
                 loginWithCredential(new AnonymousCredential()).
                 then(() => {
                     this.db.collection('users').findOne({ email: account.email })
                         .then(function (doc) {
-                            console.log(doc)
                             resolve(doc);
                         });
                 });

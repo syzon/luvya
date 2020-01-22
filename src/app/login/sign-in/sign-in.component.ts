@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DBService } from 'src/services/db.service';
 import { Account } from 'src/models/account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,7 +23,10 @@ export class SignInComponent implements OnInit {
     confirmPassword: "test123",
   };
 
-  constructor(private dbService: DBService) { }
+  constructor(
+    private dbService: DBService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -35,13 +39,13 @@ export class SignInComponent implements OnInit {
     this.shownTemplate.emit('signUp');
   }
 
-  signIn() {   
+  signIn() {
     this.dbService.findAccount(this.model).then((foundAccount: any) => {
-      console.log(this.model.password)
-      console.log(foundAccount.password)
-      if (foundAccount !== null){
+      if (foundAccount !== null) {
         if (this.model.password === foundAccount.password) {
-          console.log("PASSED!")
+          // login erfolgreich
+          console.log("TEST")
+          this.router.navigate(['/game']);
         }
       } else {
         // account nicht vorhanden
@@ -49,7 +53,7 @@ export class SignInComponent implements OnInit {
     });
 
 
-  
+
   }
 
 }

@@ -19,8 +19,7 @@ export class SignInComponent implements OnInit {
 
   model: Account = {
     email: "test@gmx.de",
-    password: "test123",
-    confirmPassword: "test123",
+    password: "test123"
   };
 
   constructor(
@@ -45,7 +44,7 @@ export class SignInComponent implements OnInit {
         if (this.model.password === foundAccount.password) {
           // login erfolgreich
           console.log("TEST")
-          this.router.navigate(['/game']);
+          this.router.navigate(['/menu']);
         }
       } else {
         // account nicht vorhanden

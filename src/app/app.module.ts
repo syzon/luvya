@@ -18,6 +18,7 @@ import { SignInComponent } from './login/sign-in/sign-in.component';
 import { MustMatchDirective } from './helpers/must-match.directive';
 import { AdminComponent } from './admin/admin.component';
 import { MainComponent } from './main/main.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MainComponent } from './main/main.component';
     SignInComponent,
     MustMatchDirective,
     AdminComponent,
-    MainComponent
+    MainComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

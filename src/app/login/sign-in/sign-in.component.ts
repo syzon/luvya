@@ -1,10 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { DBService } from 'src/services/db.service';
 import { Account } from 'src/models/account';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })

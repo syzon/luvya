@@ -1,136 +1,62 @@
+<div class="jumbotron">
+  <div class="container">
+    <div id="logreg-forms">
 
-<img [src]="'../../assets/images/logo.png'">
+      <div class="text-center">
+        <img src="assets/images/logo.png" alt="Luvya" class="text-center">
+      </div>
 
-   <div id="logreg-forms">
-    <form class="form-signin">
+      <form class="form-signin">
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
         <div class="social-login">
-            <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
-            <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
+          <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with
+              Facebook</span> </button>
+          <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in
+              with Google+</span> </button>
         </div>
-        <p style="text-align:center"> OR  </p>
+        <p style="text-align:center"> OR </p>
 
 
         <div class="form-group">
           <label>Email</label>
-          <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
-              [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
-          <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+          <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel" required
+            email>
+          <!-- <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email> -->
+          <!-- <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
               <div *ngIf="email.errors.required">Email is required</div>
               <div *ngIf="email.errors.email">Email must be a valid email address</div>
-          </div>
+          </div> -->
           <div *ngIf="emailAddressAlreadyInUse">
-              <b style='color: red'>Email is already in use </b>
+            <b style='color: red'>Email is already in use </b>
           </div>
-      </div>
+        </div>
 
-        <div class="form-group col">
+        <div class="form-group">
           <label>Password</label>
-          <input type="password" name="password" class="form-control" [(ngModel)]="model.password"
+          <input type="password" name="password" class="form-control" [(ngModel)]="model.password" #password="ngModel"
+            required>
+          <!-- <input type="password" name="password" class="form-control" [(ngModel)]="model.password"
               #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
               minlength="6">
           <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
               <div *ngIf="password.errors.required">Password is required</div>
               <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-          </div>
-      </div>
+          </div> -->
+        </div>
 
         <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""> -->
-        
+
         <button class="btn btn-success btn-block" (click)="signIn()"><i class="fas fa-sign-in-alt"></i> Login </button>
         <a href="#" id="forgot_pswd" (click)="showForgetPW()">Forgot password?</a>
         <hr>
 
-
-
-
-
-
-
-
-
-
-        
-
-        
         <!-- <p>Don't have an account!</p>  -->
-        <button class="btn btn-primary btn-block" type="button" id="btn-signup" (click)="showSignUp()"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+        <button class="btn btn-primary btn-block" type="button" id="btn-signup" (click)="showSignUp()"><i
+            class="fas fa-user-plus"></i> Sign up New Account</button>
       </form>
-        <br>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="todo-input" class="card">
-    <form (ngSubmit)="onNewUser(f)" #f="ngForm">
-      <label for="user">User</label>
-      <input ngModel type="text" id="user" name="name" required />
-
-
-
-      <!-- <label for="example-date-input" class="col-2 col-form-label">Date</label>
-      <div class="col-10">
-        <input ngModel class="form-control" type="date" value="2001-01-01" id="user" name="dateOfBirth" required>
-      </div> -->
-
-<!-- 
-      <label class="custom-control custom-radio">
-        <input ngModel id="user" name="radio" type="radio" class="custom-control-input" name="sex">
-        <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">Male</span>
-      </label>
-      <label class="custom-control custom-radio">
-        <input ngModel id="user" name="radio" type="radio" class="custom-control-input" name="sex">
-        <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">Female</span>
-      </label> -->
-
-      <ul>
-        <li class="todo" *ngFor="let user of users; let i = index">
-          <h1>{{ user.name }}</h1>
-          <button class="btn btn-danger" (click)="onDeleteUser(i)">DELETE</button>
-        </li>
-      </ul>
-
-
-      <button class="btn" type="submit" [disabled]="!f.valid">Save</button>
-    </form>
-  </div>
-<!--   
-  <div id="todos" class="card">
-    <div id="todo-actions">
-      <button class="btn btn-alt" (click)="onFetchData()">Fetch from Database</button>
+      <br>
     </div>
-    <ul>
-      <li class="todo" *ngFor="let todo of todos; let i = index">
-        <h1>{{ todo.title }}</h1>
-        <button class="btn btn-danger" (click)="onRemoveTodo(i)">DELETE</button>
-      </li>
-    </ul>
-  </div> -->
-
-
-<!-- <button onclick="onNewUser()">
-    
-</button> -->
-
-
-<div id="todo-actions">
-  <button class="btn btn-alt" (click)="onFetchUsers()">Fetch users from Database</button>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-expand-sm navbar-expand-xs  navbar-dark bg-dark fixed-top">
+<!-- <nav class="navbar navbar-expand-md navbar-expand-sm navbar-expand-xs  navbar-dark bg-dark fixed-top">
 
     <a class="navbar-brand">
         <img src="../../assets/images/logo_only.png" height="30%" width="30%">
@@ -20,7 +20,47 @@
         </li>
     </ul>
 
+</nav> -->
+
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand">
+        <img src="../../assets/images/logo_only_small.png" class="logo" alt="Luvya">
+    </a>
+    <span class="navbar-text">Luvya</span>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" (click)="log()" [routerLink]="['./profile']">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="log()" [routerLink]="['./game']">Game</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="log()" [routerLink]="['./chat']">Chat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="log()" [routerLink]="['./settings']">Settings</a>
+            </li>
+        </ul>
+        <div class="navbar-nav ml-auto">
+            <a href="#" class="nav-item nav-link">Login</a>
+        </div>
+    </div>
 </nav>
+
+
+
+
+
+
+
+
 
 
 <!-- <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
@@ -64,35 +104,4 @@
         <img src="assets/images/logo_small.png" alt="Luvya" class="text-center">
       </div>
 
-  </nav> -->
-
-
-<!-- <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Navbar</a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown link
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-      </ul>
-    </div>
   </nav> -->

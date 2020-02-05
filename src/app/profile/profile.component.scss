@@ -24,3 +24,155 @@
   height: 100px;
   width: 100px;
 }
+
+.container {
+  width: 80%;
+  height: 600px;
+  border-radius: 10px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+  //   overflow: hidden;
+  background-color: darkgray;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../../assets/images/profile/background.jpeg);
+  //   background-size: cover;
+  background-position: center;
+  //   background-repeat: no-repeat;
+  background-origin: content-box;
+  opacity: 0.8;
+  padding-top: 10px;
+}
+
+.white-text {
+  color: white;
+}
+
+.top-nav {
+  display: flex;
+  //   justify-content: space-between;
+  padding: 5px 20px;
+  //   display: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.container.on .top-nav {
+  display: flex;
+}
+
+.top-nav i {
+  color: #eee;
+  font-size: 23px;
+  top: 0;
+  cursor: pointer;
+}
+
+.front {
+  margin: 100px 0 0 30px;
+}
+
+.card h1 {
+  color: #fff;
+  font-size: 3.5rem;
+  font-family: "Lobster", cursive;
+  letter-spacing: 1px;
+}
+
+.card .btn {
+  background: transparent;
+  border: 1px solid #eee;
+  padding: 10px 50px;
+  color: #eee;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  margin: 30px 0 0 0;
+}
+
+.container .on .card {
+  height: 30px;
+  background-position: center;
+}
+
+.container.on .front {
+  display: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.card .info {
+  background: #fff;
+  width: 100%;
+  height: 50%;
+  position: relative;
+  text-align: center;
+  padding: 30px 0 0;
+  color: var(--color);
+  font-family: "Montserrat", sans-serif;
+}
+
+.container .on .btnplus {
+  background: var(--btn-color);
+  border: 0;
+  color: #fff;
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 0px 2px 10px 0px rgba(288, 0, 70, 0.3);
+  position: absolute;
+  top: -27px;
+  left: 17px;
+  cursor: pointer;
+  outline: none;
+}
+
+.btnplus {
+  left: 0;
+  right: 0;
+}
+
+.container.on .btn-c {
+  background: var(--btn-color);
+  border: 0;
+  color: #fff;
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 0px 2px 10px 0px rgba(288, 0, 70, 0.3);
+  position: absolute;
+  top: -27px;
+  right: 17px;
+  cursor: pointer;
+  outline: none;
+}
+
+.card-info h1 {
+  font-size: 2rem;
+  margin: 10px 0 5px;
+  text-transform: uppercase;
+}
+
+hr {
+  margin: 30px 0;
+}
+
+.follow {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px auto;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.follow p {
+  font-size: 2rem;
+  font-weight: bolder;
+}

@@ -21,6 +21,8 @@ import { MainComponent } from './main/main.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { ProfilePicturesComponent } from './profile/profile-pictures/profile-pictures.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { ProfilePicturesComponent } from './profile/profile-pictures/profile-pic
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

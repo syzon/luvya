@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
       if (foundAccount !== null) {
         if (this.model.password === foundAccount.password) {
           // login erfolgreich
-          console.log("TEST")
+          this.dbService.setLoggedInUserId(foundAccount._id.toString())
           this.router.navigate(['/menu']);
         }
       } else {

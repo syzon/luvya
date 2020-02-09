@@ -1,10 +1,10 @@
 export class User {
-    name: string;
-    email: string;
-    dateOfBirth: Date;
-    gender: string;
-    password: string;
-    confirmPassword: string;
+    name: string = '';
+    email: string = '';
+    dateOfBirth: Date = null;
+    gender: string = '';
+    password: string = '';
+    confirmPassword: string = '';
 
     constructor(
         name: string,

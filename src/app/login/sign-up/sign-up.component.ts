@@ -14,12 +14,12 @@ export class SignUpComponent implements OnInit {
   // model = new User('', '', '');
   // private users: User[] = [];
   model: User = {
-    name: "carlo",
-    email: "test@gmx.de",
+    name: "",
+    email: "",
     dateOfBirth: new Date('2000-01-01'),
-    gender: "male",
-    password: "test123",
-    confirmPassword: "test123",
+    gender: "",
+    password: "",
+    confirmPassword: "",
   };
 
   emailAddressAlreadyInUse = false;

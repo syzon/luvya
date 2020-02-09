@@ -32,7 +32,7 @@
     <p style="text-align:center">OR</p>
 
     <div class="card m-3">
-        <h5 class="card-header">Registrierung</h5>
+        <h5 class="card-header">Register</h5>
         <div class="card-body">
             <form name="form" (ngSubmit)="f.form.valid && !checkIfUserExists()" #f="ngForm"
                 [mustMatch]="['password', 'confirmPassword']" novalidate>
@@ -58,77 +58,76 @@
                         <b style='color: red'>Email is already in use </b>
                     </div>
                 </div>
-                    <div class="form-group">
-                        <label>Date of birth</label>
-                        <input type="date" name="dateOfBirth" class="form-control" [(ngModel)]="model.dateOfBirth"
-                            #dateOfBirth="ngModel" [ngClass]="{ 'is-invalid': f.submitted && dateOfBirth.invalid }"
-                            required>
-                        <div *ngIf="f.submitted && dateOfBirth.invalid" class="invalid-feedback">
-                            <div *ngIf="dateOfBirth.errors.required">dateOfBirth is required</div>
-                            <div *ngIf="dateOfBirth.errors.dateOfBirth">dateOfBirth must be a valid</div>
-                        </div>
+                <div class="form-group">
+                    <label>Date of birth</label>
+                    <input type="date" name="dateOfBirth" class="form-control" [(ngModel)]="model.dateOfBirth"
+                        #dateOfBirth="ngModel" [ngClass]="{ 'is-invalid': f.submitted && dateOfBirth.invalid }"
+                        required>
+                    <div *ngIf="f.submitted && dateOfBirth.invalid" class="invalid-feedback">
+                        <div *ngIf="dateOfBirth.errors.required">dateOfBirth is required</div>
+                        <div *ngIf="dateOfBirth.errors.dateOfBirth">dateOfBirth must be a valid</div>
                     </div>
+                </div>
 
-                    <div class="form-group col">
-                        <label>Gender</label>
-                        <div class="form-group" col-1>
-                            <input type="radio" name="gender" class="form-control" [(ngModel)]="model.gender"
-                                #gender="ngModel" value="male"
-                                [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }">
-                            <label for="gender" class="form-label">Male</label>
-                        </div>
-                        <div class="form-group" col-1>
-                            <input type="radio" name="gender" class="form-control" [(ngModel)]="model.gender"
-                                #gender="ngModel" value="female"
-                                [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }">
-                            <label for="gender" class="form-check-label">Female</label>
-                        </div>
-                        <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
-                            <div *ngIf="gender.errors.required">gender is required</div>
-                            <div *ngIf="gender.errors.gender">gender must be a valid</div>
-                        </div>
+                <div class="form-group col">
+                    <label>Gender</label>
+                    <div class="form-group" col-1>
+                        <input type="radio" name="gender" class="form-control" [(ngModel)]="model.gender"
+                            #gender="ngModel" value="male" [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }">
+                        <label for="gender" class="form-label">Male</label>
                     </div>
+                    <div class="form-group" col-1>
+                        <input type="radio" name="gender" class="form-control" [(ngModel)]="model.gender"
+                            #gender="ngModel" value="female"
+                            [ngClass]="{ 'is-invalid': f.submitted && gender.invalid }">
+                        <label for="gender" class="form-check-label">Female</label>
+                    </div>
+                    <div *ngIf="f.submitted && gender.invalid" class="invalid-feedback">
+                        <div *ngIf="gender.errors.required">gender is required</div>
+                        <div *ngIf="gender.errors.gender">gender must be a valid</div>
+                    </div>
+                </div>
 
 
-                    <div class="form-group col">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" [(ngModel)]="model.password"
-                            #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
-                            minlength="6">
-                        <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
-                            <div *ngIf="password.errors.required">Password is required</div>
-                            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-                        </div>
+                <div class="form-group col">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" [(ngModel)]="model.password"
+                        #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
+                        minlength="6">
+                    <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                        <div *ngIf="password.errors.required">Password is required</div>
+                        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
                     </div>
-                    <div class="form-group col">
-                        <label>Confirm Password</label>
-                        <input type="password" name="confirmPassword" class="form-control"
-                            [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
-                            [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
-                        <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
-                            <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
-                            <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
-                        </div>
+                </div>
+                <div class="form-group col">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" class="form-control"
+                        [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
+                    <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+                        <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+                        <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
                     </div>
+                </div>
 
-                    <div class="form-group form-check">
-                        <input type="checkbox" name="acceptTerms" id="acceptTerms" class="form-check-input"
-                            [(ngModel)]="model.acceptTerms" #acceptTerms="ngModel"
-                            [ngClass]="{ 'is-invalid': f.submitted && acceptTerms.invalid }" required>
-                        <br>
-                        <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
-                        <div *ngIf="f.submitted && acceptTerms.invalid" class="invalid-feedback">Accept Ts & Cs is
-                            required
-                        </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" name="acceptTerms" id="acceptTerms" class="form-check-input"
+                        [(ngModel)]="model.acceptTerms" #acceptTerms="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && acceptTerms.invalid }" required>
+                    <br>
+                    <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                    <div *ngIf="f.submitted && acceptTerms.invalid" class="invalid-feedback">Accept Ts & Cs is
+                        required
                     </div>
-                    <!-- <div class="text-center">
+                </div>
+                <!-- <div class="text-center">
                         <button class="btn btn-primary mr-1">Register</button>
                         <button class="btn btn-secondary" type="reset">Cancel</button>
                     </div> -->
 
-                    <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign
-                        Up</button>
-                    <a href="#" id="cancel_signup" (click)="backToSignIn()"><i class="fas fa-angle-left"></i> Back</a>
+                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign
+                    Up</button>
+                <a href="#" id="cancel_signup" (click)="backToSignIn()"><i class="fas fa-angle-left"></i> Back</a>
             </form>
         </div>
     </div>

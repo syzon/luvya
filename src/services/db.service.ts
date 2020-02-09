@@ -14,6 +14,7 @@ import { async } from '@angular/core/testing';
 export class DBService {
     db: RemoteMongoDatabase;
     client: StitchAppClient;
+    loggedInUserId: String;
 
     initDB() {
         this.client = Stitch.initializeDefaultAppClient('ng-database-luvya-sqhjr');
@@ -47,7 +48,6 @@ export class DBService {
         })
     };
 
-
     getUser(user: User) {
         return new Promise(resolve => {
             this.client.auth.
@@ -76,6 +76,36 @@ export class DBService {
             then(() => {
                 this.db.collection('users').deleteOne(user);
             })
+    }
+
+    updateUser(user: { name: string }) {
+        this.client.auth.
+            loginWithCredential(new AnonymousCredential()).
+            then(() => {
+                this.db.collection('users').deleteOne(user);
+            })
+    }
+
+    setLoggedInUserId(id: String) {
+        this.loggedInUserId = id;
+    }
+
+    getLoggedInUserId() {
+        return this.loggedInUserId;
+    }
+
+    getLoggedInUser(userId) {
+        return new Promise(resolve => {
+            this.client.auth.
+                loginWithCredential(new AnonymousCredential()).
+                then(() => {
+                    this.db.collection('users').findOne({ __id: userId })
+                        .then(function (doc) {
+                            resolve(doc);
+                        });
+                });
+
+        })
     }
 
 

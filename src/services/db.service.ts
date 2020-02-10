@@ -41,6 +41,8 @@ export class DBService {
                 then(() => {
                     this.db.collection('users').findOne({ email: account.email })
                         .then(function (doc) {
+                            console.log("FIND ACCOUNT")
+                            console.log(doc)
                             resolve(doc);
                         });
                 });
@@ -101,6 +103,8 @@ export class DBService {
                 then(() => {
                     this.db.collection('users').findOne({ __id: userId })
                         .then(function (doc) {
+                            console.log("LOGGEDIN USER")
+                            console.log(doc)
                             resolve(doc);
                         });
                 });

@@ -38,8 +38,13 @@
     </div>
 </div> -->
 
-<h1>Add profile pictures</h1>
+<!-- <h1>Add profile pictures</h1>
 
 <input type="file" (change)="onFileSelected($event)">
 
-<button type="button" (click)="onUpload()">Upload</button>
+<button type="button" (click)="onUpload()">Upload</button> -->
+
+<label class="image-upload-container btn btn-bwm">
+    <span>Select image</span>
+    <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
+</label>

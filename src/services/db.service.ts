@@ -10,11 +10,19 @@ import { User } from 'src/models/user';
 import { toUnicode } from 'punycode';
 import { async } from '@angular/core/testing';
 
+
+
 @Injectable({ providedIn: 'root' })
 export class DBService {
     db: RemoteMongoDatabase;
     client: StitchAppClient;
     loggedInUserId: String;
+    loggedInUserEmail: String;
+    account: any;
+
+    // const ObjectID = require("mongodb").ObjectID;
+    // type ObjectID= typeof import("mongodb").ObjectID;
+    // const id: ObjectID = new ObjectID("5b681f5b61020f2d8ad4768d");
 
     initDB() {
         this.client = Stitch.initializeDefaultAppClient('ng-database-luvya-sqhjr');
@@ -41,8 +49,6 @@ export class DBService {
                 then(() => {
                     this.db.collection('users').findOne({ email: account.email })
                         .then(function (doc) {
-                            console.log("FIND ACCOUNT")
-                            console.log(doc)
                             resolve(doc);
                         });
                 });
@@ -80,12 +86,24 @@ export class DBService {
             })
     }
 
-    updateUser(user: { name: string }) {
+    updateUser(newValues) {
+        const mergedObject = Object.assign(this.account, newValues)
+        delete mergedObject._id;
+        const query = { "email": this.account.email };
+
         this.client.auth.
             loginWithCredential(new AnonymousCredential()).
             then(() => {
-                this.db.collection('users').deleteOne(user);
+                this.db.collection('users').updateOne(query, mergedObject);
             })
+    }
+
+    setAccount(foundAccount) {
+        this.account = foundAccount;
+    }
+
+    getAccount() {
+        return this.account;
     }
 
     setLoggedInUserId(id: String) {
@@ -96,12 +114,44 @@ export class DBService {
         return this.loggedInUserId;
     }
 
+    setLoggedInUserEmail(email: String) {
+        this.loggedInUserEmail = email;
+    }
+
+    getLoggedInUserEmail() {
+        return this.loggedInUserEmail;
+    }
+
     getLoggedInUser(userId) {
+        console.log(userId)
+
+        // const gameId = "5cb9404ffc6da85909eb561c";
+        const query = { "_id": userId };
+
+        console.log(query)
+
         return new Promise(resolve => {
             this.client.auth.
                 loginWithCredential(new AnonymousCredential()).
                 then(() => {
-                    this.db.collection('users').findOne({ __id: userId })
+                    this.db.collection('users').findOne({ email: 'test@gmx.de' })
+                        .then(function (doc) {
+                            console.log("LOGGEDIN USER")
+                            console.log(doc)
+                            resolve(doc);
+                        });
+                });
+
+        })
+    }
+
+
+    getLoggedInUserViaEmail(userEmail) {
+        return new Promise(resolve => {
+            this.client.auth.
+                loginWithCredential(new AnonymousCredential()).
+                then(() => {
+                    this.db.collection('users').findOne({ email: userEmail })
                         .then(function (doc) {
                             console.log("LOGGEDIN USER")
                             console.log(doc)

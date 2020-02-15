@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
   }
 
   public log() {
-    console.log("lol geht ja")
   }
 
   public navToProfile() {

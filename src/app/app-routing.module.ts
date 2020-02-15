@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'menu', component: MenuComponent,
     children: [
-      { path: '', redirectTo: 'game', pathMatch: 'full' },
+      { path: '', redirectTo: 'profile-detail', pathMatch: 'full' },
       {
         path: "profile", component: ProfileComponent,
         children: [

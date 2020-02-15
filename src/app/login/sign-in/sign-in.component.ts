@@ -45,7 +45,10 @@ export class SignInComponent implements OnInit {
         console.log(foundAccount)
         if (this.model.password === foundAccount.password) {
           // login erfolgreich
-          this.dbService.setLoggedInUserId(foundAccount._id.toString())
+          // TODO: user anhand id ablegen
+          // this.dbService.setLoggedInUserId(foundAccount._id.toString())
+          // this.dbService.setLoggedInUserEmail(foundAccount.email)
+          this.dbService.setAccount(foundAccount)
           this.router.navigate(['/menu']);
         }
       } else {

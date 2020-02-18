@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { ProfilePicturesComponent } from './profile/profile-pictures/profile-pictures.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -28,7 +29,8 @@ const routes: Routes = [
       },
       { path: "game", component: GameComponent },
       { path: "chat", component: ChatComponent },
-      { path: "settings", component: SettingsComponent }
+      { path: "settings", component: SettingsComponent },
+      { path: "admin", component: AdminComponent }
     ]
   },
 ];

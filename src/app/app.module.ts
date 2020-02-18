@@ -22,7 +22,10 @@ import { MenuComponent } from './menu/menu.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { ProfilePicturesComponent } from './profile/profile-pictures/profile-pictures.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxImageEditorModule } from "ngx-image-editor";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -43,13 +46,17 @@ import { HttpClientModule } from '@angular/common/http';
     MainComponent,
     MenuComponent,
     ProfileDetailComponent,
-    ProfilePicturesComponent
+    ProfilePicturesComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule,
+    NgxImageEditorModule,
+    BrowserAnimationsModule,
+    ImageCropperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

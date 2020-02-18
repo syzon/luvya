@@ -86,8 +86,11 @@ export class DBService {
             })
     }
 
-    updateUser(newValues) {
+    updateUserData(newValues) {
+        console.log(newValues)
+
         const mergedObject = Object.assign(this.account, newValues)
+        console.log(mergedObject)
         delete mergedObject._id;
         const query = { "email": this.account.email };
 

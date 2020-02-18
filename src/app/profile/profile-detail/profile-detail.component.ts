@@ -26,27 +26,17 @@ export class ProfileDetailComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.dbService.getAccount())
-    // this.dbService.getLoggedInUser(this.dbService.getLoggedInUserId())
-    //   .then((data) => {
-    //     console.log(data)
-    //     if (data) {
-    //       this.user.name = data.name;
-    //     }
-    //   },
-    //   );
 
     const account = this.dbService.getAccount();
     this.user.name = account.name;
     this.user.reason = account.reason;
     this.user.info = account.info;
-
-
   }
 
   saveData() {
     console.log(this.user)
-    // this.dbService.updateUser(this.dbService.getLoggedInUserEmail(), this.user);
-    this.dbService.updateUser(this.dbService.getLoggedInUserEmail(), this.user);
+    // this.dbService.updateUserData(this.dbService.getLoggedInUserEmail(), this.user);
+    this.dbService.updateUserData(this.user);
   }
 
   updataData(data: any) {

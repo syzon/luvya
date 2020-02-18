@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { DBService } from 'src/services/db.service';
 
+class ImageSnipped {
+  constructor(public src: string, public file: File) { }
+}
 
 @Component({
   selector: 'app-profile-pictures',
@@ -9,49 +13,55 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 })
 export class ProfilePicturesComponent implements OnInit {
 
+  selectedImage: ImageSnipped;
 
-
-  constructor(private http: HttpClient) {
-
+  constructor(private dbService: DBService) {
   }
-
-
-  processFile(imageInput: any) {
-
-    const file: File = imageInput.files[0];
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // selectedFile: File = null;
-
-  // onFileSelected(event) {
-  //   this.selectedFile = <File>event.target.files[0];
-  // }
-
-  // onUpload(event) {
-  //   const fd = new FormData();
-  //   fd.append('image', this.selectedFile, this.selectedFile.name)
-  //   this.http.post('www...', fd)
-  //   .subscribe(res => {
-  //     console.log(res)
-  //   });
-  // }
 
   ngOnInit() {
+    console.log(this.dbService.getAccount())
+    this.selectedImage = this.dbService.getAccount().img;
+    // this.selectedImage = account.image;
   }
 
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+      this.selectedImage = new ImageSnipped(event.target.result, file);
+    });
+
+    reader.readAsDataURL(file);
+  }
+
+  uploadImage() {
+    console.log(this.selectedImage)
+    // this.dbService.updateUser(this.dbService.getLoggedInUserEmail(), this.user);
+    if (this.selectedImage !== undefined) {
+      const img = {
+        "img": {
+          "src": this.selectedImage.src,
+          "file": this.selectedImage.file
+        }
+      }
+      this.dbService.updateUserData(img);
+    }
+  }
+
+  // TODO: noch lauffähig machen
+  public config = {
+    ImageName: 'Some image',
+    AspectRatios: ["4:3", "16:9"],
+    ImageUrl: 'https://static.pexels.com/photos/248797/pexels-photo-248797.jpeg',
+    ImageType: 'image/jpeg'
+  }
+
+  public close() {
+
+  }
+
+  public getEditedFile(file: File) {
+
+  }
 }

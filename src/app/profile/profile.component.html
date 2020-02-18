@@ -8,13 +8,14 @@
                 </button>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" [routerLink]="['./profile-detail']">Profile</a>
+                        <a class="nav-link" [routerLink]="['./profile-detail']"
+                            [routerLinkActive]="['active']">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['./profile-pictures']">Pictures</a>
+                    <li class="nav-item" [routerLinkActive]="['active']">
+                        <a class="nav-link" [routerLink]="['./profile-pictures']"
+                            [routerLinkActive]="['active']">Pictures</a>
                     </li>
                 </ul>
-
             </div>
         </div>
 

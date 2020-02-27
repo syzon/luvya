@@ -71,6 +71,7 @@ export class DBService {
     };
 
     addUser(user: User) {
+        console.log(user)
         this.client.auth.
             loginWithCredential(new AnonymousCredential()).
             then(() => {

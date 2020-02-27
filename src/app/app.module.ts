@@ -21,10 +21,10 @@ import { MainComponent } from './main/main.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProfileDetailComponent } from './profile/profile-detail/profile-detail.component';
 import { ProfilePicturesComponent } from './profile/profile-pictures/profile-pictures.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxImageEditorModule } from "ngx-image-editor";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
@@ -52,11 +52,11 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
     FlexLayoutModule,
     NgxImageEditorModule,
     BrowserAnimationsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

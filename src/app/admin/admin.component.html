@@ -1,3 +1,22 @@
 <h1>Dummy-Factory</h1>
 
 <button (click)="createUsers()">Create Users</button>
+<button (click)="log()">log</button>
+
+
+<img [src]="img">
+
+
+<!-- <div class="img-preview" [ngStyle]="{'background-image': 'url(' + selectedImage.src + ')'}">
+</div> -->
+
+
+
+<label for="filePicker">Choose or drag a file:</label><br>
+<input type="file" id="filePicker" (change)="handleFileSelect($event)">
+
+
+<div *ngIf="userimg" class="img-preview-container">
+    <div class="img-preview" [ngStyle]="{'background-image': 'url(' + userimg.src + ')'}">
+    </div>
+</div>

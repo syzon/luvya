@@ -93,7 +93,8 @@ export class DBService {
         const mergedObject = Object.assign(this.account, newValues)
         console.log(mergedObject)
         delete mergedObject._id;
-        const query = { "email": this.account.email };
+        // const query = { "email": this.account.email };
+        const query = { "email": 'robert@gmx.de' };
 
         this.client.auth.
             loginWithCredential(new AnonymousCredential()).

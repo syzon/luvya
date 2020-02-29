@@ -3,7 +3,7 @@ import { DBService } from 'src/services/db.service';
 import { formatDate } from "@angular/common";
 import { HelperService } from 'src/services/helper.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, timer } from 'rxjs';
 import { forkJoin } from 'rxjs';
 
 // import * as RandomName from '../../../node_modules/random-name/index.js';
@@ -71,45 +71,45 @@ export class AdminComponent implements OnInit {
       "imgPath": '/assets/images/portraits/men/0.jpg',
       "img": null
     },
-    // {
-    //   "name": "Alex",
-    //   "email": "alex@gmx.de",
-    //   "dateOfBirth": this.helperService.convertStringToDate("11.04.1995"),
-    //   "gender": "male",
-    //   "password": "test123",
-    //   "confirmPassword": "test123",
-    //   "acceptTerms": true,
-    //   "reason": "Chat",
-    //   "info": "Hey, ich bins!",
-    //   "imgPath": '/assets/images/portraits/men/_1.jpg',
-    //   "img": null
-    // },
-    // {
-    //   "name": "Susi",
-    //   "email": "Susi@gmx.de",
-    //   "dateOfBirth": this.helperService.convertStringToDate("22.07.1998"),
-    //   "gender": "female",
-    //   "password": "test123",
-    //   "confirmPassword": "test123",
-    //   "acceptTerms": true,
-    //   "reason": "Chat",
-    //   "info": "Hey, ich bins!",
-    //   "imgPath": '/assets/images/portraits/women/0.jpg',
-    //   "img": null
-    // },
-    // {
-    //   "name": "Elfriede",
-    //   "email": "Elfriede@gmx.de",
-    //   "dateOfBirth": this.helperService.convertStringToDate("01.12.1994"),
-    //   "gender": "female",
-    //   "password": "test123",
-    //   "confirmPassword": "test123",
-    //   "acceptTerms": true,
-    //   "reason": "Chat",
-    //   "info": "Hey, ich bins!",
-    //   "imgPath": '/assets/images/portraits/women/_3.jpg',
-    //   "img": null
-    // },
+    {
+      "name": "Alex",
+      "email": "alex@gmx.de",
+      "dateOfBirth": this.helperService.convertStringToDate("11.04.1995"),
+      "gender": "male",
+      "password": "test123",
+      "confirmPassword": "test123",
+      "acceptTerms": true,
+      "reason": "Chat",
+      "info": "Hey, ich bins!",
+      "imgPath": '/assets/images/portraits/men/_1.jpg',
+      "img": null
+    },
+    {
+      "name": "Susi",
+      "email": "Susi@gmx.de",
+      "dateOfBirth": this.helperService.convertStringToDate("22.07.1998"),
+      "gender": "female",
+      "password": "test123",
+      "confirmPassword": "test123",
+      "acceptTerms": true,
+      "reason": "Chat",
+      "info": "Hey, ich bins!",
+      "imgPath": '/assets/images/portraits/women/0.jpg',
+      "img": null
+    },
+    {
+      "name": "Elfriede",
+      "email": "Elfriede@gmx.de",
+      "dateOfBirth": this.helperService.convertStringToDate("01.12.1994"),
+      "gender": "female",
+      "password": "test123",
+      "confirmPassword": "test123",
+      "acceptTerms": true,
+      "reason": "Chat",
+      "info": "Hey, ich bins!",
+      "imgPath": '/assets/images/portraits/women/_3.jpg',
+      "img": null
+    },
   ]
 
   constructor(
@@ -153,16 +153,28 @@ export class AdminComponent implements OnInit {
   createUsers() {
     // 95 men
     // 46 women
-    for (let user of this.users) {
+    this.addBase64ImgToUsers(this.users);
+
+    timer(2000).subscribe(x => {
+      this.postUsers();
+    })
+  }
+
+  addBase64ImgToUsers(users) {
+    for (let user of users) {
       this.helperService.getBase64ImageFromUrl(user.imgPath)
         .then(result => user.img = result)
         .catch(err => console.error(err));
-      console.log(user)
-      this.dbService.addUser(user);
+      // console.log(user)
+      // this.dbService.addUser(user);
     }
+    console.log(this.users)
+  }
 
-
-
+  postUsers() {
+    for (let i = 0; i < this.users.length; i++) {
+      this.dbService.addUser(this.users[i]);
+    }
   }
 
   userimg: any = {
@@ -172,6 +184,8 @@ export class AdminComponent implements OnInit {
 
   log() {
     console.log(this.users)
+    // this.dbService.updateUserData(this.users[0]);
+
   }
 
 

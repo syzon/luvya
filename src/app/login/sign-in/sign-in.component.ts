@@ -49,7 +49,7 @@ export class SignInComponent implements OnInit {
           // this.dbService.setLoggedInUserId(foundAccount._id.toString())
           // this.dbService.setLoggedInUserEmail(foundAccount.email)
           this.dbService.setAccount(foundAccount)
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/menu/game']);
         }
       } else {
         // account nicht vorhanden

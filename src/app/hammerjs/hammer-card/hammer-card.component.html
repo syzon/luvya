@@ -1,0 +1,10 @@
+<div class="container" [@cardAnimator]="animationState" (@cardAnimator.done)="resetAnimationState()"
+    (swipeleft)="startAnimation('slideOutLeft')" (swiperight)="startAnimation('zoomOutRight')"
+    (swipeup)="startAnimation('rotateOutUpRight')" (swipedown)="startAnimation('flipOutY')">
+
+    <p>Test</p>
+    <button (tap)="startAnimation('wobble')"> WOBBLE </button>
+    <button (tap)="startAnimation('swing')"> swing </button>
+    <button hammertime (doubleTap)="startAnimation('wobble')" (clickEvent)="test">doubleTapTest</button>
+
+</div>

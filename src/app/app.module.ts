@@ -26,6 +26,19 @@ import { NgxImageEditorModule } from "ngx-image-editor";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { HammerCardComponent } from './hammerjs/hammer-card/hammer-card.component';
+import { HammertimeDirective } from './hammerjs/hammertime.directive';
+
+import * as Hammer from 'hammerjs';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    // override hammerjs default configuration
+    'swipe': { direction: Hammer.DIRECTION_ALL }
+  }
+}
+
 
 @NgModule({
   declarations: [
@@ -47,6 +60,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MenuComponent,
     ProfileDetailComponent,
     ProfilePicturesComponent,
+    HammerCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +72,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ImageCropperModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HAMMER_GESTURE_CONFIG,
+    useClass: MyHammerConfig
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

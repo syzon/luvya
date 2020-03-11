@@ -93,8 +93,8 @@ export class DBService {
         const mergedObject = Object.assign(this.account, newValues)
         console.log(mergedObject)
         delete mergedObject._id;
-        // const query = { "email": this.account.email };
-        const query = { "email": 'robert@gmx.de' };
+        const query = { "email": this.account.email };
+        // const query = { "email": 'test@gmx.de' };
 
         this.client.auth.
             loginWithCredential(new AnonymousCredential()).
@@ -163,8 +163,43 @@ export class DBService {
                             resolve(doc);
                         });
                 });
-
         })
+    }
+
+    getRandomUserByGender(genderToFilter: String) {
+
+        console.log("test")
+
+
+        this.client.auth.
+            loginWithCredential(new AnonymousCredential()).
+            then(() => {
+                this.db.collection('users').aggregate([
+                    { $sample: { size: 1 } }
+                ])
+            });
+
+
+
+        // this.db.collection('users').aggregate([
+        //     { $match: { gender: genderToFilter } },
+        //     { $sample: { size: 1 } }
+        // ])
+
+        // return new Promise(resolve => {
+        //     this.client.auth.
+        //         loginWithCredential(new AnonymousCredential()).
+        //         then(() => {
+        //             this.db.collection('users').aggregate([
+        //                 { $match: { gender: genderToFilter } },
+        //                 { $sample: { size: 1 } }
+        //             ]).then(result => {
+        //                 console.log("test")
+        //                 console.log(result);
+        //                 resolve(result);
+        //             });;
+        //         })
+        // })
     }
 
 

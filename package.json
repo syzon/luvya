@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^8.2.14",
+    "@angular/animations": "^8.0.2",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
@@ -64,8 +64,8 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
+    "tslib": "^1.10.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3",
-    "tslib": "^1.10.0"
+    "typescript": "~3.5.3"
   }
 }

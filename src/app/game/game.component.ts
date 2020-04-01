@@ -15,7 +15,11 @@ export class GameComponent implements OnInit {
   }
 
   getRandomUser(gender: String) {
-    console.log(this.dbService.getRandomUserByGender(gender))
+    this.dbService.getRandomUserByGender(gender).then((foundRandomUser: any) => {
+      if (foundRandomUser != undefined) {
+        console.log(foundRandomUser);
+      }
+    });
   }
 
 }

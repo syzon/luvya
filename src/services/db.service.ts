@@ -167,17 +167,26 @@ export class DBService {
     }
 
     getRandomUserByGender(genderToFilter: String) {
+        return new Promise(resolve => {
+            this.client.auth.
+                loginWithCredential(new AnonymousCredential()).
+                then(() => {
 
-        console.log("test")
+                    this.db.collection('users').aggregate(
+                        [
+                            { $sample: { size: 1 } },
+                            { $match: { gender: genderToFilter } }
 
+                        ]
+                    ).first().then(function (doc) {
+                        // console.log(doc)
+                        resolve(doc)
+                    }
+                    )
 
-        this.client.auth.
-            loginWithCredential(new AnonymousCredential()).
-            then(() => {
-                this.db.collection('users').aggregate([
-                    { $sample: { size: 1 } }
-                ])
-            });
+                });
+        })
+
 
 
 

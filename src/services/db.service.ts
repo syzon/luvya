@@ -171,15 +171,13 @@ export class DBService {
             this.client.auth.
                 loginWithCredential(new AnonymousCredential()).
                 then(() => {
-
                     this.db.collection('users').aggregate(
                         [
                             { $sample: { size: 1 } },
                             { $match: { gender: genderToFilter } }
-
                         ]
                     ).first().then(function (doc) {
-                        // console.log(doc)
+                        console.log(doc)
                         resolve(doc)
                     }
                     )

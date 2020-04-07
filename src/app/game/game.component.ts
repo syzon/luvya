@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DBService } from 'src/services/db.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
+class ImageSnipped {
+  constructor(public src: string, public file: File) { }
+}
 
 @Component({
   selector: 'app-game',
@@ -9,15 +14,26 @@ import { DBService } from 'src/services/db.service';
 
 export class GameComponent implements OnInit {
 
-  constructor(private dbService: DBService) { }
+  selectedImage: ImageSnipped;
+
+  constructor(private dbService: DBService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit() {
+    this.getRandomUser('female')
+  }
+
+  public getSantizeUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   getRandomUser(gender: String) {
     this.dbService.getRandomUserByGender(gender).then((foundRandomUser: any) => {
       if (foundRandomUser != undefined) {
-        console.log(foundRandomUser);
+        this.selectedImage = foundRandomUser.img;
+      } else {
+        this.getRandomUser(gender);
       }
     });
   }

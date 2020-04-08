@@ -14,26 +14,29 @@
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="user.name" [(ngModel)]="user.name" required>
+                <input type="text" class="form-control" name="user.name" [(ngModel)]="user.name" (change)="saveData()"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="lookingFor">Looking for</label>
+                <select class="form-control" name=user.lookingFor [(ngModel)]="user.lookingFor" (change)="saveData()"
+                    required>
+                    <option *ngFor="let lookingFor of lookingForOptions" [value]="lookingFor">{{lookingFor}}</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="reason">Reason why I am here</label>
-                <select class="form-control" name=user.reason [(ngModel)]="user.reason" required>
+                <select class="form-control" name=user.reason [(ngModel)]="user.reason" (change)="saveData()" required>
                     <option *ngFor="let reason of reasons" [value]="reason">{{reason}}</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="user.info">Info</label>
-                <input type="text" class="form-control" name=user.info [(ngModel)]="user.info" required>
+                <input type="text" class="form-control" name=user.info [(ngModel)]="user.info" (change)="saveData()"
+                    required>
             </div>
-
-            <button (click)="log()">test</button>
-            <button (click)="saveData()">save</button>
-
-
-            <!-- <button type="submit" class="btn btn-success">Submit</button> -->
-
         </form>
     </div>

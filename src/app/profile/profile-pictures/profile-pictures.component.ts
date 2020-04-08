@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { DBService } from 'src/services/db.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 class ImageSnipped {
   constructor(public src: string, public file: File) { }
@@ -15,11 +16,15 @@ export class ProfilePicturesComponent implements OnInit {
 
   selectedImage: ImageSnipped;
 
-  constructor(private dbService: DBService) {
+  constructor(private dbService: DBService,
+    private sanitizer: DomSanitizer
+  ) { }
+
+  public getSantizeUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   ngOnInit() {
-    console.log(this.dbService.getAccount())
     this.selectedImage = this.dbService.getAccount().img;
     // this.selectedImage = account.image;
   }
@@ -30,13 +35,14 @@ export class ProfilePicturesComponent implements OnInit {
 
     reader.addEventListener('load', (event: any) => {
       this.selectedImage = new ImageSnipped(event.target.result, file);
+      this.uploadImage();
     });
 
     reader.readAsDataURL(file);
+
   }
 
   uploadImage() {
-    console.log(this.selectedImage)
     // this.dbService.updateUser(this.dbService.getLoggedInUserEmail(), this.user);
     if (this.selectedImage !== undefined) {
       const img = {

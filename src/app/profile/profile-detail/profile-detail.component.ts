@@ -13,12 +13,14 @@ export class ProfileDetailComponent implements OnInit {
   // TODO: Typ anpassen
   user: any = {
     name: '',
+    lookingFor: '',
     reason: '',
     info: ''
   };
 
   statusMessage: string = 'Loading data. Please wait...';
 
+  lookingForOptions = ['female', 'male', 'both'];
   reasons = ['Chats', 'Acquaintances', 'Dates'];
 
   constructor(private dbService: DBService) {
@@ -30,6 +32,7 @@ export class ProfileDetailComponent implements OnInit {
     const account = this.dbService.getAccount();
     this.user.name = account.name;
     this.user.reason = account.reason;
+    this.user.lookingFor = account.lookingFor;
     this.user.info = account.info;
   }
 

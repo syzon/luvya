@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DBService } from 'src/services/db.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-class ImageSnipped {
-  constructor(public src: string, public file: File) { }
-}
-
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -14,26 +10,37 @@ class ImageSnipped {
 
 export class GameComponent implements OnInit {
 
-  selectedImage: ImageSnipped;
+  foundRandomUser: any;
 
   constructor(private dbService: DBService,
     private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
-    this.getRandomUser('female')
+    this.getRandomUser()
   }
 
   public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
-  getRandomUser(gender: String) {
-    this.dbService.getRandomUserByGender(gender).then((foundRandomUser: any) => {
+  postMatchAction(action: string) {
+    // superlike implementieren
+    // if (action === 'like') {
+    //   this.dbService.getAccount().liked.push(this.foundRandomUser.email)
+    // } else {
+    //   this.dbService.getAccount().disliked.push(this.foundRandomUser.email)
+    // }
+
+    // this.dbService.updateUserData(this.user);
+  }
+
+  getRandomUser() {
+    this.dbService.getRandomUserByGender(this.dbService.getAccount().lookingFor).then((foundRandomUser: any) => {
       if (foundRandomUser != undefined) {
-        this.selectedImage = foundRandomUser.img;
+        this.foundRandomUser = foundRandomUser;
       } else {
-        this.getRandomUser(gender);
+        this.getRandomUser();
       }
     });
   }

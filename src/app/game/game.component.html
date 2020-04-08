@@ -1,17 +1,17 @@
 <!-- <app-hammer-card></app-hammer-card> -->
 
-<div *ngIf="selectedImage" class="img-preview-container">
+<div *ngIf="foundRandomUser" class="img-preview-container">
     <!-- <div class="img-preview" [ngStyle]="{'background-image':'url(' + selectedImage.src + ')'}"> </div> -->
-    <img class="img-preview" [src]=getSantizeUrl(selectedImage.src) />
+    <img class="img-preview" [src]=getSantizeUrl(foundRandomUser.img.src) />
 </div>
 
 <div mat-card-avatar class="nav-header-image" [style.background-image]="userImage"></div>
 
 <div>
-    <button class="btn-success" (click)="getRandomUser('female')">
+    <button class="btn-success" (click)="getRandomUser()">
         Yes!
     </button>
-    <button class="btn-danger" (click)="getRandomUser('female')">
+    <button class="btn-danger" (click)="getRandomUser()">
         No!
     </button>
 </div>

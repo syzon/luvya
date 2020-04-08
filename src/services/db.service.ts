@@ -171,45 +171,45 @@ export class DBService {
             this.client.auth.
                 loginWithCredential(new AnonymousCredential()).
                 then(() => {
-                    this.db.collection('users').aggregate(
-                        [
-                            { $sample: { size: 1 } },
-                            { $match: { gender: genderToFilter } }
-                        ]
-                    ).first().then(function (doc) {
-                        console.log(doc)
-                        resolve(doc)
+                    if (genderToFilter === 'both') {
+                        this.db.collection('users').aggregate(
+                            [
+                                { $sample: { size: 1 } }
+                            ]
+                        ).first().then(function (doc) {
+                            resolve(doc)
+                        }
+                        )
+                    } else {
+                        this.db.collection('users').aggregate(
+                            [
+                                { $sample: { size: 1 } },
+                                { $match: { gender: genderToFilter } }
+                            ]
+                        ).first().then(function (doc) {
+                            resolve(doc)
+                        }
+                        )
                     }
-                    )
-
                 });
         })
-
-
-
-
-        // this.db.collection('users').aggregate([
-        //     { $match: { gender: genderToFilter } },
-        //     { $sample: { size: 1 } }
-        // ])
-
-        // return new Promise(resolve => {
-        //     this.client.auth.
-        //         loginWithCredential(new AnonymousCredential()).
-        //         then(() => {
-        //             this.db.collection('users').aggregate([
-        //                 { $match: { gender: genderToFilter } },
-        //                 { $sample: { size: 1 } }
-        //             ]).then(result => {
-        //                 console.log("test")
-        //                 console.log(result);
-        //                 resolve(result);
-        //             });;
-        //         })
-        // })
     }
 
+    // postMatchAction(action: string) {
+    //     console.log(newValues)
 
+    //     const mergedObject = Object.assign(this.account, newValues)
+    //     console.log(mergedObject)
+    //     delete mergedObject._id;
+    //     const query = { "email": this.account.email };
+    //     // const query = { "email": 'test@gmx.de' };
+
+    //     this.client.auth.
+    //         loginWithCredential(new AnonymousCredential()).
+    //         then(() => {
+    //             this.db.collection('matchgame').updateOne(query, mergedObject);
+    //         })
+    // }
 
     // addUser(user: {name: string, dataOfBirth: Date, sex: boolean}) {
     //     this.client.auth.

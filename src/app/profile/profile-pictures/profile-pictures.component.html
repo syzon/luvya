@@ -49,12 +49,15 @@
     <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
 </label>
 
+
+
+
 <div *ngIf="selectedImage" class="img-preview-container">
-    <div class="img-preview" [ngStyle]="{'background-image': 'url(' + selectedImage.src + ')'}">
-    </div>
+    <!-- <div class="img-preview" [ngStyle]="{'background-image': 'url(' + selectedImage.src + ')'}"></div> -->
+    <img class="img-preview" [src]=getSantizeUrl(selectedImage.src) />
 </div>
 
-<button *ngIf="selectedImage" (click)="uploadImage()">Upload</button>
+<!-- <button *ngIf="selectedImage" (click)="uploadImage()">Upload</button> -->
 
 <!-- <ngx-image-editor [config]="yourConfig"></ngx-image-editor> -->
 <!-- <ngx-image-editor [config]="config" (close)="close($event)" (file)="getEditedFile($event)">

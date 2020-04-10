@@ -1,8 +1,8 @@
 <!-- <app-hammer-card></app-hammer-card> -->
 
-<div *ngIf="foundRandomUser" class="img-preview-container">
+<div *ngIf="displayedUser" class="img-preview-container">
     <!-- <div class="img-preview" [ngStyle]="{'background-image':'url(' + selectedImage.src + ')'}"> </div> -->
-    <img class="img-preview" [src]=getSantizeUrl(foundRandomUser.img.src) />
+    <img class="img-preview" [src]=getSantizeUrl(displayedUser.img.src) />
 </div>
 
 <div mat-card-avatar class="nav-header-image" [style.background-image]="userImage"></div>
@@ -18,6 +18,6 @@
 
 <div class="tcontrols">
     <div class="tno"><i class="fa fa-times" (click)="postMatchAction('dislike')" aria-hidden=" true"></i></div>
-    <div class="ti"><i class="fa fa-info" (click)="postMatchAction('like')" aria-hidden=" true"></i></div>
+    <div class="ti"><i class="fa fa-info" (click)="postMatchAction('superlike')" aria-hidden=" true"></i></div>
     <div class="tyes"><i class="fa fa-heart" (click)="postMatchAction('like')" aria-hidden=" true"></i></div>
 </div>

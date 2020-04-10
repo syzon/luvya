@@ -72,11 +72,11 @@ export class DBService {
 
     addUser(user: User) {
         console.log(user)
-        this.client.auth.
-            loginWithCredential(new AnonymousCredential()).
-            then(() => {
-                this.db.collection('users').insertOne(user);
-            })
+        // this.client.auth.
+        //     loginWithCredential(new AnonymousCredential()).
+        //     then(() => {
+        //         this.db.collection('users').insertOne(user);
+        //     })
     }
 
     deleteUser(user: { name: string }) {
@@ -166,7 +166,7 @@ export class DBService {
         })
     }
 
-    getRandomUserByGender(genderToFilter: String) {
+    getRandomUsersByGender(amount: number, genderToFilter: String) {
         return new Promise(resolve => {
             this.client.auth.
                 loginWithCredential(new AnonymousCredential()).
@@ -174,26 +174,37 @@ export class DBService {
                     if (genderToFilter === 'both') {
                         this.db.collection('users').aggregate(
                             [
-                                { $sample: { size: 1 } },
-                                // {
-                                //     $disliked:
-                                //     {
-                                //         item: 1,
-                                //         result: { $not: [{ $gt: ["$qty", 250] }] }
-                                //     }
-                                // }
+                                { $sample: { size: amount } },
+                                {
+                                    $match: {
+                                        $and: [
+                                            { email: { '$nin': this.getAccount().liked } },
+                                            { email: { '$nin': this.getAccount().disliked } }
+                                        ]
+                                    }
+                                }
                             ]
-                        ).first().then(function (doc) {
+                            // TODO: receive array and hold array of possible users locally
+                        ).asArray().then(function (doc) {
                             resolve(doc)
                         }
                         )
                     } else {
                         this.db.collection('users').aggregate(
                             [
-                                { $sample: { size: 1 } },
-                                { $match: { gender: genderToFilter } }
+                                { $sample: { size: amount } },
+                                {
+                                    $match: {
+                                        $and: [
+                                            { gender: genderToFilter },
+                                            { email: { '$nin': this.getAccount().liked } },
+                                            { email: { '$nin': this.getAccount().disliked } }
+                                        ]
+                                    }
+                                }
+
                             ]
-                        ).first().then(function (doc) {
+                        ).asArray().then(function (doc) {
                             resolve(doc)
                         }
                         )

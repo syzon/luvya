@@ -7,11 +7,17 @@
 
 <div mat-card-avatar class="nav-header-image" [style.background-image]="userImage"></div>
 
-<div>
-    <button class="btn-success" (click)="getRandomUser()">
+<!-- <div>
+    <button class="btn-success" (click)="postMatchAction('like')">
         Yes!
     </button>
     <button class="btn-danger" (click)="getRandomUser()">
         No!
     </button>
+</div> -->
+
+<div class="tcontrols">
+    <div class="tno"><i class="fa fa-times" (click)="postMatchAction('dislike')" aria-hidden=" true"></i></div>
+    <div class="ti"><i class="fa fa-info" (click)="postMatchAction('like')" aria-hidden=" true"></i></div>
+    <div class="tyes"><i class="fa fa-heart" (click)="postMatchAction('like')" aria-hidden=" true"></i></div>
 </div>

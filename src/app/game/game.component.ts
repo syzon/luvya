@@ -25,14 +25,20 @@ export class GameComponent implements OnInit {
   }
 
   postMatchAction(action: string) {
+    let account = this.dbService.getAccount();
     // superlike implementieren
-    // if (action === 'like') {
-    //   this.dbService.getAccount().liked.push(this.foundRandomUser.email)
-    // } else {
-    //   this.dbService.getAccount().disliked.push(this.foundRandomUser.email)
-    // }
+    if (action === 'like') {
+      account['liked'] = account['liked'] || [];
+      if (account['liked'].indexOf(this.foundRandomUser.email) === -1) {
+        account['liked'].push(this.foundRandomUser.email)
+      }
+      console.log(account);
+    } else {
+      this.dbService.getAccount().disliked.push(this.foundRandomUser.email)
+    }
 
-    // this.dbService.updateUserData(this.user);
+    this.dbService.updateUserData(account);
+    this.getRandomUser()
   }
 
   getRandomUser() {

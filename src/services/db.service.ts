@@ -174,7 +174,14 @@ export class DBService {
                     if (genderToFilter === 'both') {
                         this.db.collection('users').aggregate(
                             [
-                                { $sample: { size: 1 } }
+                                { $sample: { size: 1 } },
+                                // {
+                                //     $disliked:
+                                //     {
+                                //         item: 1,
+                                //         result: { $not: [{ $gt: ["$qty", 250] }] }
+                                //     }
+                                // }
                             ]
                         ).first().then(function (doc) {
                             resolve(doc)

@@ -18,10 +18,70 @@ input {
 .img-preview {
   background: center center no-repeat;
   background-size: contain;
-  //   height: 100%;
-  //   width: 100%
+  height: 100%;
+  width: 100%;
   // height: 116px;
   // width: 116px;
-  height: 200px;
-  width: 200px;
+  //   height: 200px;
+  //   width: 200px;
+}
+
+.tcontrols {
+}
+.tno {
+  background-color: #fff;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  top: 50px;
+  left: 5%;
+  border: 10px solid #f0f0f0;
+}
+.tno i {
+  color: #ff695b;
+  font-size: 80px;
+  padding: 12px 23px;
+}
+.ti {
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  left: 10%;
+  top: 30px;
+  border: 10px solid #f0f0f0;
+}
+.ti .fa-info {
+  font-size: 23px;
+  padding: 4px 12px;
+  color: #398beb;
+}
+.tyes {
+  background-color: #fff;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  top: 48px;
+  left: 15%;
+  border: 10px solid #f0f0f0;
+}
+.tyes i {
+  color: #5de19c;
+  font-size: 60px;
+  padding: 25px 23px;
 }

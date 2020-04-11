@@ -65,6 +65,13 @@ export class GameComponent implements OnInit {
   }
 
   getRandomUsers() {
+    if (this.dbService.getAccount().hasOwnProperty !== 'liked') {
+      this.dbService.getAccount()['liked'] = [];
+    }
+    if (this.dbService.getAccount().hasOwnProperty !== 'disliked') {
+      this.dbService.getAccount()['disliked'] = [];
+    }
+
     this.dbService.getRandomUsersByGender(10, this.dbService.getAccount().lookingFor).then((foundRandomUsers: any) => {
       if (foundRandomUsers != undefined) {
         console.log(foundRandomUsers)
@@ -77,6 +84,7 @@ export class GameComponent implements OnInit {
       //   // this.getRandomUser();
       // }
     });
+
   }
 
   getRandomUserFromRandomUsers() {

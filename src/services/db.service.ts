@@ -72,11 +72,11 @@ export class DBService {
 
     addUser(user: User) {
         console.log(user)
-        // this.client.auth.
-        //     loginWithCredential(new AnonymousCredential()).
-        //     then(() => {
-        //         this.db.collection('users').insertOne(user);
-        //     })
+        this.client.auth.
+            loginWithCredential(new AnonymousCredential()).
+            then(() => {
+                this.db.collection('users').insertOne(user);
+            })
     }
 
     deleteUser(user: { name: string }) {
@@ -84,6 +84,14 @@ export class DBService {
             loginWithCredential(new AnonymousCredential()).
             then(() => {
                 this.db.collection('users').deleteOne(user);
+            })
+    }
+
+    deleteAllUsers() {
+        this.client.auth.
+            loginWithCredential(new AnonymousCredential()).
+            then(() => {
+                this.db.collection('users').deleteMany({});
             })
     }
 

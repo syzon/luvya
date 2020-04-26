@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/models/user';
 import { DBService } from 'src/services/db.service';
 import { async } from '@angular/core/testing';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +17,9 @@ export class SignUpComponent implements OnInit {
   model: User = {
     name: "",
     email: "",
-    dateOfBirth: new Date('2000-01-01'),
+    dateOfBirth: null,
+    // dateOfBirth: new Date('2000-01-01'),
+    // dateOfBirth: new Date(this.getRandomItemFromArray(this.birthdays)),
     gender: "",
     password: "",
     confirmPassword: "",
@@ -26,7 +29,9 @@ export class SignUpComponent implements OnInit {
 
 
 
-  constructor(private dbService: DBService) {
+  constructor(private dbService: DBService,
+    private datePipe: DatePipe
+  ) {
     // this.model = {
     //   name: "",
     //   email: "",
@@ -62,6 +67,8 @@ export class SignUpComponent implements OnInit {
   signUp() {
     console.log("SIGNUP SUCCEEDED")
     console.log(this.model);
+
+    this.model.dateOfBirth = new Date(this.model.dateOfBirth);
     this.addNewUser(this.model);
     this.backToSignIn();
   }

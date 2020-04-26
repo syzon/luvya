@@ -29,6 +29,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { HammerCardComponent } from './hammerjs/hammer-card/hammer-card.component';
 import { HammertimeDirective } from './hammerjs/hammertime.directive';
 import { AngularImgComponent } from './animations/angular-img/angular-img.component';
+import { DatePipe } from '@angular/common';
 
 import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -74,10 +75,13 @@ export class MyHammerConfig extends HammerGestureConfig {
     ImageCropperModule,
     HttpClientModule
   ],
-  providers: [{
-    provide: HAMMER_GESTURE_CONFIG,
-    useClass: MyHammerConfig
-  }],
+  providers: [
+    DatePipe,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

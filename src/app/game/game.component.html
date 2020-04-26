@@ -3,9 +3,12 @@
 <div *ngIf="displayedUser" class="img-preview-container">
     <!-- <div class="img-preview" [ngStyle]="{'background-image':'url(' + selectedImage.src + ')'}"> </div> -->
     <img class="img-preview" [src]=getSantizeUrl(displayedUser.img.src) />
+    <h1>{{displayedUser?.name}}, {{age}}</h1>
 </div>
 
 <div mat-card-avatar class="nav-header-image" [style.background-image]="userImage"></div>
+
+
 
 <!-- <div>
     <button class="btn-success" (click)="postMatchAction('like')">

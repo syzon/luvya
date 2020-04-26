@@ -12,6 +12,7 @@ export class GameComponent implements OnInit {
 
   foundRandomUsers: any[];
   displayedUser: any;
+  age: number;
 
   constructor(private dbService: DBService,
     private sanitizer: DomSanitizer
@@ -57,26 +58,39 @@ export class GameComponent implements OnInit {
     // delete displayedUser from foundRandomUsers
     this.foundRandomUsers = this.foundRandomUsers.filter(user => user.email !== this.displayedUser.email);
     console.log(this.foundRandomUsers);
-    this.displayedUser = this.getRandomUserFromRandomUsers();
-    console.log(this.displayedUser)
-    // if (this.foundRandomUsers.length === 0) {
-    //       this.getRandomUsers()
-    // }
+
+    console.log(this.foundRandomUsers);
+    console.log(this.foundRandomUsers.length);
+    if (this.foundRandomUsers.length > 0) {
+      this.displayedUser = this.getRandomUserFromRandomUsers();
+      this.getAgeOfDisplayedUser();
+    } else {
+      this.displayedUser = null;
+      this.getRandomUsers();
+    }
+
+    // console.log(this.displayedUser)
+
   }
 
   getRandomUsers() {
-    if (this.dbService.getAccount().hasOwnProperty !== 'liked') {
+    if (!this.dbService.getAccount().hasOwnProperty('liked')) {
       this.dbService.getAccount()['liked'] = [];
     }
-    if (this.dbService.getAccount().hasOwnProperty !== 'disliked') {
+    if (!this.dbService.getAccount().hasOwnProperty('disliked')) {
       this.dbService.getAccount()['disliked'] = [];
     }
 
+    console.log("GET RANDOM USERS")
+    console.log(this.foundRandomUsers)
     this.dbService.getRandomUsersByGender(10, this.dbService.getAccount().lookingFor).then((foundRandomUsers: any) => {
       if (foundRandomUsers != undefined) {
         console.log(foundRandomUsers)
         this.foundRandomUsers = foundRandomUsers;
         this.displayedUser = this.getRandomUserFromRandomUsers();
+        if (this.displayedUser !== undefined) {
+          this.getAgeOfDisplayedUser();
+        }
       }
 
       // else {
@@ -89,6 +103,13 @@ export class GameComponent implements OnInit {
 
   getRandomUserFromRandomUsers() {
     return this.foundRandomUsers[Math.floor(Math.random() * this.foundRandomUsers.length)];
+  }
+
+  getAgeOfDisplayedUser() {
+    console.log(this.displayedUser.dateOfBirth);
+    console.log(this.displayedUser.dateOfBirth.getTime());
+    let timeDiff = Math.abs(Date.now() - this.displayedUser.dateOfBirth.getTime());
+    this.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
   }
 
 }

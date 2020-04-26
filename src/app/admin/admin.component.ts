@@ -418,10 +418,10 @@ export class AdminComponent implements OnInit {
       src: ''
     };
 
-    image.src = 'assets/images/portraits/' + gender + '/' + pictureNumber + '.jpg';
+    let imagePath = 'assets/images/portraits/' + gender + '/' + pictureNumber + '.jpg';
 
-    this.helperService.getBase64ImageFromUrl(image.src)
-      .then(result => image.img = result)
+    this.helperService.getBase64ImageFromUrl(imagePath)
+      .then(result => image.src = result)
       .catch(err => console.error(err));
 
     let user = {

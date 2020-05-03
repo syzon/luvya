@@ -19,7 +19,7 @@
     </button>
 </div> -->
 
-<div class="tcontrols">
+<div class="tcontrols" *ngIf="displayedUser">
     <div class="tno"><i class="fa fa-times" (click)="postMatchAction('dislike')" aria-hidden=" true"></i></div>
     <div class="ti"><i class="fa fa-info" (click)="postMatchAction('superlike')" aria-hidden=" true"></i></div>
     <div class="tyes"><i class="fa fa-heart" (click)="postMatchAction('like')" aria-hidden=" true"></i></div>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GameComponent } from './game/game.component';
+import { GameComponent, MatchDataDialog } from './game/game.component';
 import { StartComponent } from './start/start.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -30,6 +30,7 @@ import { HammerCardComponent } from './hammerjs/hammer-card/hammer-card.componen
 import { HammertimeDirective } from './hammerjs/hammertime.directive';
 import { AngularImgComponent } from './animations/angular-img/angular-img.component';
 import { DatePipe } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -43,6 +44,10 @@ export class MyHammerConfig extends HammerGestureConfig {
 
 
 @NgModule({
+  exports: [
+    MatDialogModule
+  ],
+  entryComponents: [MatchDataDialog],
   declarations: [
     AppComponent,
     GameComponent,
@@ -63,7 +68,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ProfileDetailComponent,
     ProfilePicturesComponent,
     HammerCardComponent,
-    AngularImgComponent
+    AngularImgComponent,
+    MatchDataDialog
   ],
   imports: [
     BrowserModule,

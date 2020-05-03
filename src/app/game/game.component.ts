@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DBService } from 'src/services/db.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game',
@@ -15,7 +16,8 @@ export class GameComponent implements OnInit {
   age: number;
 
   constructor(private dbService: DBService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,14 @@ export class GameComponent implements OnInit {
         if (account['liked'].indexOf(this.displayedUser.email) === -1) {
           account['liked'].push(this.displayedUser.email)
         };
+        // match-case
+        if (this.displayedUser.liked !== undefined) {
+          for (let index = 0; index < this.displayedUser.liked.length; index++) {
+            if (account.email === this.displayedUser.liked[index]) {
+              this.openDialog()
+            }
+          }
+        }
         break;
       case "dislike":
         account['disliked'] = account['disliked'] || [];
@@ -58,8 +68,6 @@ export class GameComponent implements OnInit {
     // delete displayedUser from foundRandomUsers
     this.foundRandomUsers = this.foundRandomUsers.filter(user => user.email !== this.displayedUser.email);
     console.log(this.foundRandomUsers);
-
-    console.log(this.foundRandomUsers);
     console.log(this.foundRandomUsers.length);
     if (this.foundRandomUsers.length > 0) {
       this.displayedUser = this.getRandomUserFromRandomUsers();
@@ -73,6 +81,17 @@ export class GameComponent implements OnInit {
 
   }
 
+  openDialog() {
+    this.dialog.open(MatchDataDialog, {
+      // data: {
+      //   animal: 'panda'
+      // }
+      data: this.displayedUser.name
+    });
+  }
+
+
+
   getRandomUsers() {
     if (!this.dbService.getAccount().hasOwnProperty('liked')) {
       this.dbService.getAccount()['liked'] = [];
@@ -81,8 +100,6 @@ export class GameComponent implements OnInit {
       this.dbService.getAccount()['disliked'] = [];
     }
 
-    console.log("GET RANDOM USERS")
-    console.log(this.foundRandomUsers)
     this.dbService.getRandomUsersByGender(10, this.dbService.getAccount().lookingFor).then((foundRandomUsers: any) => {
       if (foundRandomUsers != undefined) {
         console.log(foundRandomUsers)
@@ -106,10 +123,16 @@ export class GameComponent implements OnInit {
   }
 
   getAgeOfDisplayedUser() {
-    console.log(this.displayedUser.dateOfBirth);
-    console.log(this.displayedUser.dateOfBirth.getTime());
     let timeDiff = Math.abs(Date.now() - this.displayedUser.dateOfBirth.getTime());
     this.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
   }
 
+}
+
+@Component({
+  selector: 'match-data-dialog',
+  templateUrl: 'match-data-dialog.html',
+})
+export class MatchDataDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: 'lol') { }
 }

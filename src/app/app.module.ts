@@ -11,7 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResetPwComponent } from './login/reset-pw/reset-pw.component';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { SignInComponent } from './login/sign-in/sign-in.component';
@@ -31,9 +31,13 @@ import { HammertimeDirective } from './hammerjs/hammertime.directive';
 import { AngularImgComponent } from './animations/angular-img/angular-img.component';
 import { DatePipe } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { MatchDialogComponent } from './game/match-dialog/match-dialog.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -45,9 +49,11 @@ export class MyHammerConfig extends HammerGestureConfig {
 
 @NgModule({
   exports: [
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatTableModule,
   ],
-  entryComponents: [MatchDataDialog],
+  entryComponents: [MatchDialogComponent],
   declarations: [
     AppComponent,
     GameComponent,
@@ -69,7 +75,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ProfilePicturesComponent,
     HammerCardComponent,
     AngularImgComponent,
-    MatchDataDialog
+    MatchDataDialog,
+    MatchDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +86,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxImageEditorModule,
     BrowserAnimationsModule,
     ImageCropperModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     DatePipe,
@@ -88,6 +96,7 @@ export class MyHammerConfig extends HammerGestureConfig {
       useClass: MyHammerConfig,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

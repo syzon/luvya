@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DBService } from 'src/services/db.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatchDialogComponent } from './match-dialog/match-dialog.component';
 
 @Component({
   selector: 'app-game',
@@ -31,6 +32,9 @@ export class GameComponent implements OnInit {
   postMatchAction(action: string) {
     let account = this.dbService.getAccount();
 
+
+    this.openDialog();
+
     // TODO: optimize code here
     switch (action) {
       case "like":
@@ -39,13 +43,13 @@ export class GameComponent implements OnInit {
           account['liked'].push(this.displayedUser.email)
         };
         // match-case
-        if (this.displayedUser.liked !== undefined) {
-          for (let index = 0; index < this.displayedUser.liked.length; index++) {
-            if (account.email === this.displayedUser.liked[index]) {
-              this.openDialog()
-            }
-          }
-        }
+        // if (this.displayedUser.liked !== undefined) {
+        //   for (let index = 0; index < this.displayedUser.liked.length; index++) {
+        //     if (account.email === this.displayedUser.liked[index]) {
+        //       this.openDialog()
+        //     }
+        //   }
+        // }
         break;
       case "dislike":
         account['disliked'] = account['disliked'] || [];
@@ -65,6 +69,12 @@ export class GameComponent implements OnInit {
     }
 
     this.dbService.updateUserData(account)
+
+    // console.log(this.displayedUser)
+
+  }
+
+  getNewUser() {
     // delete displayedUser from foundRandomUsers
     this.foundRandomUsers = this.foundRandomUsers.filter(user => user.email !== this.displayedUser.email);
     console.log(this.foundRandomUsers);
@@ -76,19 +86,44 @@ export class GameComponent implements OnInit {
       this.displayedUser = null;
       this.getRandomUsers();
     }
-
-    // console.log(this.displayedUser)
-
   }
+
+  // openDialog() {
+  //   this.dialog.open(MatchDataDialog, {
+  //     // data: {
+  //     //   animal: 'panda'
+  //     // }
+  //     data: this.displayedUser.name
+  //   });
+  // }
 
   openDialog() {
-    this.dialog.open(MatchDataDialog, {
-      // data: {
-      //   animal: 'panda'
-      // }
-      data: this.displayedUser.name
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      // id: 1,
+      // title: 'Angular For Beginners',
+      description: 'Congrats! You just matched with',
+      matchedWithUser: this.displayedUser,
+    };
+
+    this.dialog.open(MatchDialogComponent, dialogConfig);
+
+    const dialogRef = this.dialog.open(MatchDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog output:", result);
+      if (result === 0) {
+        // go to chat
+      } else {
+        this.getNewUser();
+      }
     });
   }
+
 
 
 

@@ -15,6 +15,7 @@ export class MatchDialogComponent implements OnInit {
 
   form: FormGroup;
   description: string;
+  user: any;
   matchedWithUser: any;
 
   constructor(
@@ -27,15 +28,17 @@ export class MatchDialogComponent implements OnInit {
     // }) {
     private dialogRef: MatDialogRef<GameComponent>,
     @Inject(MAT_DIALOG_DATA) {
-      description, matchedWithUser
+      description, user, matchedWithUser
     }
   ) {
 
     this.description = description;
+    this.user = user;
     this.matchedWithUser = matchedWithUser;
 
     this.form = fb.group({
       description: [description, Validators.required],
+      user: [Validators.required],
       matchedWithUser: [description, Validators.required],
       // category: [category, Validators.required],
       // releasedAt: [moment(), Validators.required],

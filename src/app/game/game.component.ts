@@ -12,6 +12,7 @@ import { MatchDialogComponent } from './match-dialog/match-dialog.component';
 
 export class GameComponent implements OnInit {
 
+  account: any;
   foundRandomUsers: any[];
   displayedUser: any;
   age: number;
@@ -30,10 +31,7 @@ export class GameComponent implements OnInit {
   }
 
   postMatchAction(action: string) {
-    let account = this.dbService.getAccount();
-
-
-    this.openDialog();
+    let account = this.account = this.dbService.getAccount();
 
     // TODO: optimize code here
     switch (action) {
@@ -43,19 +41,20 @@ export class GameComponent implements OnInit {
           account['liked'].push(this.displayedUser.email)
         };
         // match-case
-        // if (this.displayedUser.liked !== undefined) {
-        //   for (let index = 0; index < this.displayedUser.liked.length; index++) {
-        //     if (account.email === this.displayedUser.liked[index]) {
-        //       this.openDialog()
-        //     }
-        //   }
-        // }
+        if (this.displayedUser.liked !== undefined) {
+          for (let index = 0; index < this.displayedUser.liked.length; index++) {
+            if (account.email === this.displayedUser.liked[index]) {
+              this.openDialog()
+            }
+          }
+        }
         break;
       case "dislike":
         account['disliked'] = account['disliked'] || [];
         if (account['disliked'].indexOf(this.displayedUser.email) === -1) {
           account['disliked'].push(this.displayedUser.email)
         };
+        // this.getNewUser();
         break;
       // superlike implementieren
       case "superlike":
@@ -63,6 +62,7 @@ export class GameComponent implements OnInit {
         if (account['superliked'].indexOf(this.displayedUser.email) === -1) {
           account['superliked'].push(this.displayedUser.email)
         };
+        this.getNewUser();
         break;
       default:
         console.log("ERROR");
@@ -107,6 +107,7 @@ export class GameComponent implements OnInit {
       // id: 1,
       // title: 'Angular For Beginners',
       description: 'Congrats! You just matched with',
+      user: this.account,
       matchedWithUser: this.displayedUser,
     };
 
@@ -115,10 +116,14 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(MatchDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
+      this.dialog.closeAll();
       console.log("Dialog output:", result);
       if (result === 0) {
         // go to chat
-      } else {
+        console.log("CHAT")
+      }
+      else {
+        console.log("NEW USER")
         this.getNewUser();
       }
     });

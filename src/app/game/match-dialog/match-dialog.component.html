@@ -1,4 +1,3 @@
-<img src="../../assets/images/logo_only_small.png" class="center" alt="Luvya">
 <h2 mat-dialog-title>{{description}} {{matchedWithUser.name}}!</h2>
 
 
@@ -13,14 +12,28 @@
 
 
 
-<div class="modal-dialog" style="max-width: 350px">
+<!-- <div class="modal-dialog" style="max-width: 350px">
     <div class="modal-content">
         <div class="modal-body">
             <img class="img-responsive" [src]=getSantizeUrl(matchedWithUser.img.src) />
         </div>
     </div>
-</div>
+</div> -->
 
+<!-- <img class="img-responsive" [src]=getSantizeUrl(user.img.src) />
+<img class="img-responsive" [src]=getSantizeUrl(matchedWithUser.img.src) /> -->
+
+<div class="row">
+    <div class="column">
+        <img class="resize" [src]=getSantizeUrl(user.img.src)>
+    </div>
+    <div class="column">
+        <img src="../../assets/images/logo_only_small.png" class="center" alt="Luvya">
+    </div>
+    <div class="column">
+        <img class="resize" [src]=getSantizeUrl(matchedWithUser.img.src)>
+    </div>
+</div>
 
 
 
@@ -29,7 +42,7 @@
 <div>
     <mat-dialog-actions>
         <button class="mat-raised-button" (click)="goToChat()">Chat with {{matchedWithUser.name}}</button>
-        <button class="mat-raised-button mat-primary" (click)="close()">Continue swiping</button>
+        <button class="mat-raised-button mat-primary matDiaLogClose" (click)="close()">Continue swiping</button>
     </mat-dialog-actions>
 </div>
 

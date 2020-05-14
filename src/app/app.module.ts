@@ -38,6 +38,8 @@ import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { MatchDialogComponent } from './game/match-dialog/match-dialog.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { WebsocketService } from 'src/services/websocket.service';
+import { ChatService } from 'src/services/chat.service';
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -94,9 +96,11 @@ export class MyHammerConfig extends HammerGestureConfig {
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
-    }
+    },
+    ChatService,
+    WebsocketService
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

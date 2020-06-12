@@ -7,18 +7,20 @@ import { ChatService } from 'src/services/chat.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  message: string;
 
   constructor(private chatService: ChatService) { }
 
   ngOnInit() {
-    this.chatService.messages.subscribe(msg => {
-      console.log(msg);
-    })
+    // this.chatService.messages.subscribe(msg => {
+    //   console.log(msg);
+    // })
   }
 
   sendMessage() {
     console.log("TEST")
-    this.chatService.sendMsg("Test Message");
+    this.chatService.sendMessage(this.message);
+    this.message = '';
   }
 
 }

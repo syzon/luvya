@@ -48,13 +48,14 @@ export class GameComponent implements OnInit {
             }
           }
         }
+        this.getNewUser();
         break;
       case "dislike":
         account['disliked'] = account['disliked'] || [];
         if (account['disliked'].indexOf(this.displayedUser.email) === -1) {
           account['disliked'].push(this.displayedUser.email)
         };
-        // this.getNewUser();
+        this.getNewUser();
         break;
       // superlike implementieren
       case "superlike":
@@ -69,7 +70,7 @@ export class GameComponent implements OnInit {
     }
 
     this.dbService.updateUserData(account)
-
+    this.getNewUser();
     // console.log(this.displayedUser)
 
   }

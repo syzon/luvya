@@ -40,6 +40,7 @@ import { MatchDialogComponent } from './game/match-dialog/match-dialog.component
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { WebsocketService } from 'src/services/websocket.service';
 import { ChatService } from 'src/services/chat.service';
+import { MatchesComponent } from './chat/matches/matches.component';
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -78,7 +79,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     HammerCardComponent,
     AngularImgComponent,
     MatchDataDialog,
-    MatchDialogComponent
+    MatchDialogComponent,
+    MatchesComponent
   ],
   imports: [
     BrowserModule,

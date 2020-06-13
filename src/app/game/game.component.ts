@@ -24,6 +24,8 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.getRandomUsers();
+    // console.log(this.dbService.findByKeyAndValueAccount('gender', 'female'));
+    // this.dbService.updateMany();
   }
 
   public getSantizeUrl(url: string) {
@@ -44,6 +46,35 @@ export class GameComponent implements OnInit {
         if (this.displayedUser.liked !== undefined) {
           for (let index = 0; index < this.displayedUser.liked.length; index++) {
             if (account.email === this.displayedUser.liked[index]) {
+              // add match to both users match-array
+              // own acc
+              if (!account.hasOwnProperty('matches')) {
+                account.matches = [];
+              }
+
+              account.matches.push(this.displayedUser.email);
+              this.dbService.updateUserData(account)
+
+
+
+              // match-acc
+              this.dbService.findAccount(this.displayedUser.email).then((foundAccount: any) => {
+                console.log(JSON.stringify(this.displayedUser.email));
+                console.log(JSON.stringify(foundAccount));
+                // let matchAccount = this.dbService.getAccountViaEmail(this.displayedUser.email);
+                if (!foundAccount.hasOwnProperty('matches')) {
+                  foundAccount.matches = [];
+                }
+                foundAccount.matches.push(this.account.email);
+                console.log(JSON.stringify(foundAccount));
+                this.dbService.updateUserData(foundAccount)
+              });
+
+
+
+
+
+
               this.openDialog()
             }
           }
@@ -55,6 +86,7 @@ export class GameComponent implements OnInit {
         if (account['disliked'].indexOf(this.displayedUser.email) === -1) {
           account['disliked'].push(this.displayedUser.email)
         };
+        this.dbService.updateUserData(account)
         this.getNewUser();
         break;
       // superlike implementieren
@@ -63,14 +95,15 @@ export class GameComponent implements OnInit {
         if (account['superliked'].indexOf(this.displayedUser.email) === -1) {
           account['superliked'].push(this.displayedUser.email)
         };
+        this.dbService.updateUserData(account)
         this.getNewUser();
         break;
       default:
         console.log("ERROR");
     }
 
-    this.dbService.updateUserData(account)
-    this.getNewUser();
+    // this.dbService.updateUserData(account)
+    // this.getNewUser();
     // console.log(this.displayedUser)
 
   }

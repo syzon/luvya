@@ -32,6 +32,7 @@ export class DBService {
     }
 
     getUsers() {
+        console.log("GETUSERS")
         return this.client.auth
             .loginWithCredential(new AnonymousCredential())
             .then(() => {
@@ -55,6 +56,44 @@ export class DBService {
 
         })
     };
+
+
+    findByKeyAndValueAccount(key, value) {
+
+        this.client.auth.
+            loginWithCredential(new AnonymousCredential()).
+            then(() => {
+                this.db.collection('users').find({ 'gender': 'female' })
+                    .asArray()
+                    .then(function (doc) {
+                        console.log(doc)
+                        for (let index = 0; index < doc.length; index++) {
+                            const element = doc[index];
+
+                            element['liked'].push('test@gmx.de');
+                            console.log(element)
+                        }
+                        return doc;
+                    });
+            });
+    };
+
+    // findByKeyAndValueAccount(key, value) {
+    //     return new Promise(resolve => {
+    //         this.client.auth.
+    //             loginWithCredential(new AnonymousCredential()).
+    //             then(() => {
+    //                 this.db.collection('users').find({ 'gender': 'female' })
+    //                     .asArray()
+    //                     .then(function (doc) {
+    //                         console.log(doc)
+    //                         resolve(doc);
+    //                     });
+    //             });
+
+    //     })
+    // };
+
 
     getUser(user: User) {
         return new Promise(resolve => {
@@ -88,6 +127,7 @@ export class DBService {
     }
 
     deleteAllUsers() {
+        console.log("DELETE")
         this.client.auth.
             loginWithCredential(new AnonymousCredential()).
             then(() => {
@@ -95,20 +135,38 @@ export class DBService {
             })
     }
 
-    updateUserData(newValues) {
-        console.log(newValues)
+    updateUserData(newDataObject) {
+        console.log("UPDATE USERDATA")
+        console.log(newDataObject)
 
-        const mergedObject = Object.assign(this.account, newValues)
-        console.log(mergedObject)
-        delete mergedObject._id;
-        const query = { "email": this.account.email };
+        // const mergedObject = Object.assign(this.account, newValues)
+        // console.log(JSON.stringify(mergedObject));
+        // console.log(mergedObject)
+        // delete mergedObject._id;
+        const query = { "email": newDataObject.email };
         // const query = { "email": 'test@gmx.de' };
 
         this.client.auth.
             loginWithCredential(new AnonymousCredential()).
             then(() => {
-                this.db.collection('users').updateOne(query, mergedObject);
+                this.db.collection('users').updateOne(query, newDataObject);
             })
+    }
+
+    updateMany() {
+        // console.log(newValues)
+
+        // const mergedObject = Object.assign(this.account, newValues)
+        // console.log(mergedObject)
+        // delete mergedObject._id;
+        const query = { "gender": 'female' };
+        // const query = { "email": 'test@gmx.de' };
+
+        // this.client.auth.
+        //     loginWithCredential(new AnonymousCredential()).
+        //     then(() => {
+        //         this.db.collection('users').updateMany({ "gender": "female" }, { $set: { liked: ['test@gmx.de'] } });
+        //     })
     }
 
     setAccount(foundAccount) {
@@ -118,6 +176,11 @@ export class DBService {
     getAccount() {
         return this.account;
     }
+
+    getLoggedInAccount() {
+        return this.account;
+    }
+
 
     setLoggedInUserId(id: String) {
         this.loggedInUserId = id;
@@ -159,14 +222,13 @@ export class DBService {
     }
 
 
-    getLoggedInUserViaEmail(userEmail) {
+    getAccountViaEmail(userEmail) {
         return new Promise(resolve => {
             this.client.auth.
                 loginWithCredential(new AnonymousCredential()).
                 then(() => {
                     this.db.collection('users').findOne({ email: userEmail })
                         .then(function (doc) {
-                            console.log("LOGGEDIN USER")
                             console.log(doc)
                             resolve(doc);
                         });

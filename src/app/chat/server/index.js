@@ -22,3 +22,7 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
     console.log(`started on port: ${port}`);
 });
+
+// https://www.youtube.com/watch?v=k8o8-Q_-Qfk#t=2.797
+
+// https://codingblast.com/chat-application-angular-socket-io/

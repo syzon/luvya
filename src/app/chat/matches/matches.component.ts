@@ -14,12 +14,16 @@ export class MatchesComponent implements OnInit {
   constructor(private dbService: DBService,
     private sanitizer: DomSanitizer) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     let account = this.dbService.getAccount()
     for (let index = 0; index < account.matches.length; index++) {
-      this.matches.push(this.dbService.getAccountViaEmail(account.matches[index]))
+      // let matchAcc = this.dbService.getAccountViaEmail(account.matches[index]).then;
+      await this.dbService.getAccountViaEmail(account.matches[index]).then(data => {
+        this.matches.push(data)
+      })
     }
-    console.log(this.matches);
+    console.log(this.matches)
+
   }
 
   public getSantizeUrl(url: string) {

@@ -1,29 +1,14 @@
-<!-- <div class="row">
-    <div class="column">
-        <img src="img1.jpg" onclick="" class="hover-shadow">
+<div class="container">
+    <div class="card">
+        <div *ngIf="matches.length > 0">
+            <div *ngFor="let i of matches" class="row">
+                <div class="img-preview-container">
+                    <div class="column">
+                        <img class="img-preview" [src]=getSantizeUrl(i?.img.src) />
+                        {{i.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="column">
-        <img src="img2.jpg" onclick="" class="hover-shadow">
-    </div>
-    <div class="column">
-        <img src="img3.jpg" onclick="" class="hover-shadow">
-    </div>
-    <div class="column">
-        <img src="img4.jpg" onclick="" class="hover-shadow">
-    </div>
-</div>
-
-
-<div *ngIf="displayedUser" class="img-preview-container">
-    <img class="img-preview" [src]=getSantizeUrl(matches.img.src) />
-    <h1>{{displayedUser?.name}}, {{age}}</h1>
-</div> -->
-
-<div *ngFor="let i of matches" class="row">
-
-    <div class="column">
-        <img class="img-preview" [src]=getSantizeUrl(matches[i].img.src) />
-    </div>
-
-
 </div>

@@ -53,10 +53,8 @@ export class DBService {
                             resolve(doc);
                         });
                 });
-
         })
     };
-
 
     findByKeyAndValueAccount(key, value) {
 
@@ -221,6 +219,18 @@ export class DBService {
         })
     }
 
+    // getAccountViaEmail(userEmail) {
+
+    //     this.client.auth.
+    //         loginWithCredential(new AnonymousCredential()).
+    //         then(() => {
+    //             this.db.collection('users').findOne({ email: userEmail })
+    //                 .then(function (doc) {
+    //                     console.log(doc)
+    //                     return doc;
+    //                 });
+    //         });
+    // }
 
     getAccountViaEmail(userEmail) {
         return new Promise(resolve => {

@@ -51,29 +51,18 @@ export class GameComponent implements OnInit {
               if (!account.hasOwnProperty('matches')) {
                 account.matches = [];
               }
-
               account.matches.push(this.displayedUser.email);
               this.dbService.updateUserData(account)
 
-
-
               // match-acc
-              this.dbService.findAccount(this.displayedUser.email).then((foundAccount: any) => {
-                console.log(JSON.stringify(this.displayedUser.email));
-                console.log(JSON.stringify(foundAccount));
+              this.dbService.getAccountViaEmail(this.displayedUser.email).then((foundAccount: any) => {
                 // let matchAccount = this.dbService.getAccountViaEmail(this.displayedUser.email);
                 if (!foundAccount.hasOwnProperty('matches')) {
                   foundAccount.matches = [];
                 }
                 foundAccount.matches.push(this.account.email);
-                console.log(JSON.stringify(foundAccount));
                 this.dbService.updateUserData(foundAccount)
               });
-
-
-
-
-
 
               this.openDialog()
             }

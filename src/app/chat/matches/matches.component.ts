@@ -30,4 +30,8 @@ export class MatchesComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
+  public log(item) {
+    console.log(item);
+  }
+
 }

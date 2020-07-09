@@ -1,16 +1,48 @@
+.flex-container {
+    display: flex;
+}
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.child {
+    flex: 1 0 21%; /* explanation below */
+    margin: 5px;
+    height: 100px;
+    // background-color: blue;
+    border: 10px black;
+}
+
 .img-preview-container {
-    background-color: #f7f7f7;
-    position: relative;
-    border: 1px black;
+    // background-color: #f7f7f7;
+    // position: relative;
+    // border: 10px black;
+
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
 }
 
 .img-preview {
     background: center center no-repeat;
-    background-size: contain;
+    // background-size: contain;
     height: 100%;
     width: 100%;
     // height: 116px;
     // width: 116px;
     //   height: 200px;
     //   width: 200px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
 }
